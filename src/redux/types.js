@@ -1,0 +1,10 @@
+export const ANSWER_QUESTION = 'ANSWER_QUESTION';
+
+export const ADD_QUESTION = 'ADD_QUESTION';
+
+export const SET_AUTHED_USER = 'ADD_QUESTION';
+
+export const RECIEVE_QUESTIONS = 'RECIEVE_QUESTIONS';
+
+export const RECEIVE_USERS = 'RECEIVE_USERS';
+
