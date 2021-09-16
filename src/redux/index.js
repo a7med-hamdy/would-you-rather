@@ -2,7 +2,7 @@ import { combineReducers, createStore } from "redux";
 import users from './reducers/users';
 import questions from './reducers/questions';
 import authedUser from "./reducers/authedUser";
-
+import middleware from "./middleware";
 
 const rootReducer = combineReducers({
     users,
@@ -10,6 +10,6 @@ const rootReducer = combineReducers({
     authedUser
 });
 
-const store = createStore(rootReducer);
+const store = createStore(rootReducer, middleware);
 
 export default store;
