@@ -1,8 +1,8 @@
 import {
     ANSWER_QUESTION,
     ADD_QUESTION,
-    RECEIVE_QUESTIONS
-} from '../redux/types.js';
+    RECIEVE_QUESTIONS
+} from '../types.js';
 
 export const answerQuestion =(question) =>{
     return{
@@ -20,7 +20,7 @@ export const addQuestion =(question) =>{
 
 export const receiveQuestions =(questions) =>{
     return{
-        type : RECEIVE_QUESTIONS,
+        type : RECIEVE_QUESTIONS,
         questions
     }
 }

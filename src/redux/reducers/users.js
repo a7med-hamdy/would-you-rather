@@ -1,6 +1,6 @@
-import { RECEIVE_USERS } from '../redux/types';
+import { RECEIVE_USERS } from '../types.js';
 
-const users =(state = {}, action) =>{
+const users = (state = {}, action) =>{
     switch(action.type){
         case RECEIVE_USERS:
             return{

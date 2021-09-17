@@ -1,4 +1,4 @@
-import { SET_AUTHED_USER } from '../redux/types.js';
+import { SET_AUTHED_USER } from '../types.js';
 
 const authedUser = (state = null, action) =>{
     switch(action.type){

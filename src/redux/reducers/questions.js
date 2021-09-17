@@ -1,12 +1,12 @@
 import {
     ANSWER_QUESTION,
     ADD_QUESTION,
-    RECEIVE_QUESTIONS
-} from '../redux/types.js';
+    RECIEVE_QUESTIONS
+} from '../types.js';
 
 const questions = (state = {}, action) =>{
     switch(action.type){
-        case RECEIVE_QUESTIONS:
+        case RECIEVE_QUESTIONS:
             return{
                 ...state,
                 ...action.questions
@@ -14,7 +14,7 @@ const questions = (state = {}, action) =>{
         case ADD_QUESTION:
             return{
                 ...state,
-                ...action.question
+                [action.question.id] : action.question
             }
         case ANSWER_QUESTION:
             return{

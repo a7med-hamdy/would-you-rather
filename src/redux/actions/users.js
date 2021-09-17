@@ -1,4 +1,4 @@
-import { RECEIVE_USERS } from '../redux/types.js';
+import { RECEIVE_USERS } from '../types.js';
 
 export const receiveUsers =(users) =>{
     return{
