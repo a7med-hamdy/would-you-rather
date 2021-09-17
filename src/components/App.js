@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { handleIntialData } from '../redux/actions/intial';
 import Home from '../views/Home';
 import NewQuestion from '../views/NewQuestion';
-
+import Leaderboard from '../views/Leaderboard';
 class App extends Component {
   componentDidMount(){
     this.props.dispatch(handleIntialData());
@@ -11,7 +11,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <NewQuestion />
+        {this.props.loading === true ? null :<Leaderboard />}
       </div>
     );
   }
