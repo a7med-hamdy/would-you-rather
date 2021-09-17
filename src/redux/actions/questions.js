@@ -5,6 +5,7 @@ import {
 } from '../types.js';
 
 import { _saveQuestionAnswer } from '../utils/_DATA.js';
+import { _saveQuestion } from '../utils/_DATA.js';
 import { updateUser } from './users';
 
 
@@ -14,13 +15,6 @@ export const answerQuestion =(question, answer, authedUser) =>{
         question,
         answer,
         authedUser
-    }
-}
-
-export const addQuestion =(question) =>{
-    return{
-        type : ADD_QUESTION,
-        question
     }
 }
 
@@ -34,6 +28,28 @@ export const handleAnswerQuestion = (question, answer) =>{
             .catch((e) => {console.error(e)})
     }
 }
+
+export const addQuestion =(question) =>{
+    return{
+        type : ADD_QUESTION,
+        question
+    }
+}
+
+export const handleAddQuestion = (one, two, authedUser) =>{
+    let question = {
+        optionOneText : one,
+        optionTwoText : two,
+        author : authedUser
+    }
+    return(dispatch) =>{
+        return _saveQuestion(question)
+            .then((formattedQuestion) => {
+                dispatch(addQuestion(formattedQuestion));
+            })
+    }
+}
+
 
 export const receiveQuestions =(questions) =>{
     return{

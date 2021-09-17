@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { handleIntialData } from '../redux/actions/intial';
 import Home from '../views/Home';
-
+import NewQuestion from '../views/NewQuestion';
 
 class App extends Component {
   componentDidMount(){
@@ -11,7 +11,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {this.props.loading === true ? null :<Home /> }
+        <NewQuestion />
       </div>
     );
   }
