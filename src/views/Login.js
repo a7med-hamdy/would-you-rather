@@ -4,10 +4,11 @@ import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import Button from '@mui/material/Button';
 import { setAuthedUser } from '../redux/actions/authedUser';
+
 class Login extends Component{
 
     state = {
-        name : '' 
+        name : '', 
     }
 
     handleSelect =(text) =>{
@@ -18,10 +19,20 @@ class Login extends Component{
 
     handleSubmit = (e) =>{
         e.preventDefault();
-        this.props.dispatch(setAuthedUser(this.state.name))
+        const arr = Object.keys(this.props.users);
+        let n;
+        arr.map((user) => {
+            if(this.props.users[user].name === this.state.name)
+            {
+                n = this.props.users[user].id
+            }
+        })
+        
+        this.props.dispatch(setAuthedUser(n))
         this.setState(() => ({
             name : ''
         }))
+        this.props.history.push("/Home")
     }
     render(){
         const {users} = this.props;
@@ -34,7 +45,7 @@ class Login extends Component{
                 <form onSubmit = {this.handleSubmit}>
                 <Autocomplete
                     options={usersArray}
-                    style={{ width: 300 }}
+                    style={{ width: 300, marginTop : '15px', marginBottom : '10px' }}
                     renderInput={(params) =>
                     <TextField {...params} label="Select user" variant="outlined" />}
                     onSelect = {(event) => this.handleSelect(event.target.value)}

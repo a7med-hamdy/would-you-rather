@@ -1,4 +1,51 @@
+*, *::before, *::after {
+	box-sizing: border-box;
+}
+
+body {
+	padding: 0;
+	margin: 0;
+	background-color: lightcoral;
+}
+
 .avatar{
     width: 50px;
     height : 50px;
+}
+
+ul{
+	list-style-type : none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+}
+
+.primary-nav{
+	float : left;
+	margin : 3px;
+}
+
+
+.second-nav{
+	float : right;
+	margin : 3px;
+}
+
+span{
+	text-decoration: none;
+	font-weight: bold;
+	font-family:'Courier New', Courier, monospace;
+	color :ghostwhite;
+}
+
+.welcome-message{
+	margin-right: 15px;
+	font-family: cursive;
+	display : inline;
+	color :darkseagreen;
+}
+
+.nav{
+	height : 40px;
+	background-color: darkred;
 }
