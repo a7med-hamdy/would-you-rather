@@ -19,6 +19,7 @@ class Leaderboard extends Component{
                         <img
                             src = {users[user].avatarURL} 
                             className = 'avatar'
+                            alt = 'avatar'
                         />
                         <p>Questions posted : {users[user].questions.length}</p>
                         <p>Questions answered : {Object.keys(users[user].answers).length} </p>
