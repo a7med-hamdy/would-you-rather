@@ -41,14 +41,14 @@ class Home extends Component {
             <div style = {{textAlign : 'center'}}>
                 <button disabled = {this.state.answered}
                 onClick ={() => this.handleAnsweredClick()}>
-                    answered
+                    Not answered
                 </button>
                 <button disabled = {!this.state.answered}
                 onClick ={() => this.handleNotAnsweredClick()}>
-                    NOT answered
+                    answered
                 </button>
-                { this.state.answered ? arr.map((id) => <Question id = {id} key = {id} answered = {this.state.answered}/>) : 
-                array.map((id) => <Question id = {id} key = {id} answered = {this.state.answered}/>)
+                { this.state.answered ? array.map((id) => <Question id = {id} key = {id} answered = {this.state.answered}/>) : 
+                arr.map((id) => <Question id = {id} key = {id} answered = {this.state.answered}/>)
                 }
             </div>
         )

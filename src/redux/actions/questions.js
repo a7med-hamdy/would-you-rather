@@ -4,10 +4,16 @@ import {
     RECIEVE_QUESTIONS
 } from '../types.js';
 
-export const answerQuestion =(question) =>{
+import { _saveQuestionAnswer } from '../utils/_DATA.js';
+import { updateUser } from './users';
+
+
+export const answerQuestion =(question, answer, authedUser) =>{
     return{
         type : ANSWER_QUESTION,
-        question
+        question,
+        answer,
+        authedUser
     }
 }
 
@@ -15,6 +21,17 @@ export const addQuestion =(question) =>{
     return{
         type : ADD_QUESTION,
         question
+    }
+}
+
+export const handleAnswerQuestion = (question, answer) =>{
+    return  (dispatch, getState) =>{
+        const { authedUser } = getState();
+        dispatch(answerQuestion(question, answer, authedUser));
+        dispatch(updateUser(question, answer, authedUser));
+        let qid = question;
+        return _saveQuestionAnswer({authedUser, qid, answer})
+            .catch((e) => {console.error(e)})
     }
 }
 

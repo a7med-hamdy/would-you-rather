@@ -8,3 +8,5 @@ export const RECIEVE_QUESTIONS = 'RECIEVE_QUESTIONS';
 
 export const RECEIVE_USERS = 'RECEIVE_USERS';
 
+export const UPDATE_USER = 'UPDATE_USER';// in case of answering question
+

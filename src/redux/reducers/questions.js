@@ -19,7 +19,13 @@ const questions = (state = {}, action) =>{
         case ANSWER_QUESTION:
             return{
                 ...state,
-                //to be done
+                [action.question] :{
+                    ...state[action.question],
+                    [action.answer] : {
+                        ...state[action.question][action.answer],
+                        votes : state[action.question][action.answer].votes.concat([action.authedUser])
+                    }
+                }
             }
         default :
             return state;
