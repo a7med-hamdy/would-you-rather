@@ -1,4 +1,4 @@
-import { RECEIVE_USERS, UPDATE_USER } from '../types.js';
+import { RECEIVE_USERS, UPDATE_USER, UPDATE_USER_QUESTION } from '../types.js';
 
 export const receiveUsers =(users) =>{
     return{
@@ -13,5 +13,13 @@ export const updateUser = (question, answer, authedUser) => {
         question,
         answer,
         authedUser
+    }
+}
+
+export const updateUserQuestions = (authedUser, question) =>{
+    return{
+        type : UPDATE_USER_QUESTION,
+        authedUser,
+        question,
     }
 }

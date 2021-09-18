@@ -15,6 +15,9 @@ class App extends Component {
     this.props.dispatch(handleIntialData());
   }
   render() {
+    /**
+     * Don't forget correct adding questions
+     */
     return (
       <Router>
         <Fragment>

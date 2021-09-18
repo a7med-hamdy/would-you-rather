@@ -10,3 +10,5 @@ export const RECEIVE_USERS = 'RECEIVE_USERS';
 
 export const UPDATE_USER = 'UPDATE_USER';// in case of answering question
 
+export const UPDATE_USER_QUESTION = 'UPDATE_USER_QUESTION'//in case of adding new question
+

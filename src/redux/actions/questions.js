@@ -6,7 +6,7 @@ import {
 
 import { _saveQuestionAnswer } from '../utils/_DATA.js';
 import { _saveQuestion } from '../utils/_DATA.js';
-import { updateUser } from './users';
+import { updateUser, updateUserQuestions } from './users';
 
 
 export const answerQuestion =(question, answer, authedUser) =>{
@@ -36,7 +36,7 @@ export const addQuestion =(question) =>{
     }
 }
 
-export const handleAddQuestion = (one, two, authedUser) =>{
+export const handleAddQuestion = (one, two, authedUser, users) =>{
     let question = {
         optionOneText : one,
         optionTwoText : two,
@@ -45,7 +45,8 @@ export const handleAddQuestion = (one, two, authedUser) =>{
     return(dispatch) =>{
         return _saveQuestion(question)
             .then((formattedQuestion) => {
-                dispatch(addQuestion(formattedQuestion));
+                dispatch(addQuestion(formattedQuestion))
+                dispatch(updateUserQuestions(authedUser, formattedQuestion))
             })
     }
 }

@@ -17,6 +17,7 @@ class NewQuestion extends Component{
             two : '',
             toHome : true,
         }))
+        this.props.history.push("/Home")
     }
 
     handleChangeOne = (text) => {
