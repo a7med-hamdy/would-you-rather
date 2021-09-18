@@ -8,7 +8,6 @@ class Navbar extends Component{
 
  
     handleLogOut = (e) =>{
-        e.preventDefault()
         this.props.dispatch(setAuthedUser(null));
     }
 
@@ -24,7 +23,7 @@ class Navbar extends Component{
                         </NavLink>
                     </li>
                     <li className = 'primary-nav'>
-                        <NavLink to='/NewQuestion'>
+                        <NavLink to='/add'>
                             <Button variant = 'outlined'>
                                 New Question
                             </Button>

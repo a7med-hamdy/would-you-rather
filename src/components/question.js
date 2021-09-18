@@ -1,19 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { handleAnswerQuestion } from '../redux/actions/questions';
-
+import { Button } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 class Question extends Component{
 
-    handleOne = (question) =>{
-        this.props.dispatch(handleAnswerQuestion(question, "optionOne"))
-    }
 
-    handleTwo = (question) =>{
-        this.props.dispatch(handleAnswerQuestion(question, "optionTwo"))
-    }
-
+    
     render(){
-        const {question, user, answered} = this.props;
+        const {question, user, answered, authedUser, users} = this.props;
         const total_votes = question.optionOne.votes.length + question.optionTwo.votes.length;
         return(
             <div className = 'question'>
@@ -25,27 +19,65 @@ class Question extends Component{
                     />
                 </div>
                 <div className = 'text'>
-                <p>{`${user.name} asks would you rather`}</p>
-                </div>
-                {answered ? 
+                <p className = 'sentence'>{`${user.name} asks would you rather`}</p>
+                {answered ?  
                 <div>
-                    <button onClick = {() => this.handleOne(question.id)}>
+                <ol>
+                    <li>
                         {question.optionOne.text}
-                    </button>
-                    <button onClick = {() => this.handleTwo(question.id)}>
+                    </li>
+                    <li>
                         {question.optionTwo.text}
-                    </button>
+                    </li>
+                </ol>
+                <Link to = {`/question/:${question.id}`}>
+                <Button className = 'answer' variant = 'contained' color = 'primary'>
+                    Answer
+                </Button>
+                </Link>
                 </div>
+
                 :
+                 
                 <div>
+                   
+                    {users[authedUser].answers[question.id] === 'optionOne' ? 
                     <div>
-                    {`${question.optionOne.text} : ${(question.optionOne.votes.length/total_votes*100).toFixed(2)}%`}
+                    <div style = {{fontWeight : 'bold'}}>
+                        
+                        <label> &#10003;
+                        {`${question.optionOne.text} : ${(question.optionOne.votes.length/total_votes*100).toFixed(2)}%  of the users answered this`}
+                        </label>
                     </div>
                     <div>
-                    {`${question.optionTwo.text} : ${(question.optionTwo.votes.length/total_votes*100).toFixed(2)}%`}
+                        {`${question.optionTwo.text} : ${(question.optionTwo.votes.length/total_votes*100).toFixed(2)}%  of the users answered this`}
                     </div>
+                    </div>
+                    :
+                    <div>
+                    <div>
+                        
+                        
+                        {`${question.optionOne.text} : ${(question.optionOne.votes.length/total_votes*100).toFixed(2)}%  of the users answered this`}
+                        
+                    </div>
+                    <div style = {{fontWeight : 'bold'}}>
+                        <label> &#10003;
+                        {`${question.optionTwo.text} : ${(question.optionTwo.votes.length/total_votes*100).toFixed(2)}%  of the users answered this`}
+                        </label>
+                    </div>
+                    </div>
+
+             
+                
+                }
                 </div>
+
+                
             }
+                
+                </div>
+                <div className = 'break-line'></div>
             </div>
         )
     }
@@ -53,7 +85,7 @@ class Question extends Component{
 }
 
 
-const mapStateToProps = ( {users, questions} , {id, answered}) =>{
+const mapStateToProps = ( {users, questions, authedUser} , {id, answered}) =>{
     let user;
     for(let y in users)
     {
@@ -66,7 +98,9 @@ const mapStateToProps = ( {users, questions} , {id, answered}) =>{
     return{
         question : questions[id],
         user : users[user],
-        answered
+        answered,
+        authedUser,
+        users
     }
 }
 

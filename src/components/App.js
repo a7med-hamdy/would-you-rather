@@ -8,27 +8,24 @@ import Login from '../views/Login';
 import Navbar from './Navbar';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import { ProtectedRoute } from './ProtectedRoute';
-
+import Questionpage from '../components/Questionpage';
 
 class App extends Component {
   componentDidMount(){
     this.props.dispatch(handleIntialData());
   }
   render() {
-    /**
-     * Don't forget correct adding questions
-     */
     return (
       <Router>
         <Fragment>
-          <div className="App">
-            <Redirect to ='/login' />{/*first page to show is the log in*/}
+          <div className="App">   
           <Navbar />
           <Switch>
-            <Route exact path="/login" component={Login} />
+            <Route exact path="/" component={Login} />
+            <ProtectedRoute exact path="/question/:id" component={Questionpage}  logged = {this.props.logged}/>
             <ProtectedRoute exact path='/Home'  component={Home} logged = {this.props.logged} />
             <ProtectedRoute exact path='/Leaderboard' component={Leaderboard} logged = {this.props.logged} />
-            <ProtectedRoute exact path='/NewQuestion' component={NewQuestion} logged = {this.props.logged} />
+            <ProtectedRoute exact path='/add' component={NewQuestion} logged = {this.props.logged} />
             <Route path="*" component={() => "404 NOT FOUND"} />
           </Switch>
           </div>

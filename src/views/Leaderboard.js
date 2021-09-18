@@ -11,7 +11,7 @@ class Leaderboard extends Component{
         (users[a].questions.length + Object.keys(users[a].answers).length)
         )
         return(
-            <div className = 'leaderboard-area'>
+            <div className = 'leaderboard-area' style = {{textAlign : 'center'}}>
                 <ul>
                 {arr.map((user) => 
                    <li key = {users[user].name} >
@@ -24,8 +24,10 @@ class Leaderboard extends Component{
                         <p>Questions posted : {users[user].questions.length}</p>
                         <p>Questions answered : {Object.keys(users[user].answers).length} </p>
                         <h2>Score : {users[user].questions.length + Object.keys(users[user].answers).length}</h2>
+                        <div className = 'break-line'></div>
                    </li>
-                )}
+                   
+                )} 
                 </ul>
             </div>
         )
