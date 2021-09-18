@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { handleAnswerQuestion } from '../redux/actions/questions';
 import { connect } from 'react-redux';
 import { Button } from '@material-ui/core';
-import { useParams } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 class QuestionInformation extends Component{
 
@@ -23,8 +23,13 @@ class QuestionInformation extends Component{
         }))
     }
     render(){
+
+        const { err } = this.props;
+        if(err){
+            return <Redirect to = '/error' />
+        }
         let { question, user, users, authedUser } = this.props
-        const total_votes = question.optionOne.votes.length + question.optionTwo.votes.length;
+   
         return(
         <div>  
             <div>
@@ -42,11 +47,11 @@ class QuestionInformation extends Component{
                     <div style = {{fontWeight : 'bold'}}>
                         
                         <label> &#10003;
-                        {`${question.optionOne.text} : ${(question.optionOne.votes.length/total_votes*100).toFixed(2)}% of the users answered this`}
+                        {`${question.optionOne.text} : ${question.optionOne.votes.length} users answered this`}
                         </label>
                     </div>
                     <div>
-                        {`${question.optionTwo.text} : ${(question.optionTwo.votes.length/total_votes*100).toFixed(2)}% of the users answered this`}
+                        {`${question.optionTwo.text} : ${question.optionTwo.votes.length} users answered this`}
                     </div>
                     </div>
                     :
@@ -54,12 +59,12 @@ class QuestionInformation extends Component{
                     <div>
                         
                         
-                        {`${question.optionOne.text} : ${(question.optionOne.votes.length/total_votes*100).toFixed(2)}% of the users answered this`}
+                        {`${question.optionOne.text} : ${question.optionOne.votes.length} users answered this`}
                         
                     </div>
                     <div style = {{fontWeight : 'bold'}}>
                         <label> &#10003;
-                        {`${question.optionTwo.text} : ${(question.optionTwo.votes.length/total_votes*100).toFixed(2)}% of the users answered this`}
+                        {`${question.optionTwo.text} : ${question.optionTwo.votes.length} users answered this`}
                         </label>
                     </div>
                     </div>
@@ -90,6 +95,12 @@ class QuestionInformation extends Component{
 const mapStateToProps = ({ questions, users,authedUser }, { id }) =>{
     id = id.substring(1);
     let user;
+    if(questions[id] === undefined)
+    {
+        return{
+            err : true
+        }
+    }
     for(let y in users)
     {
         if(y === questions[id].author)
@@ -101,7 +112,8 @@ const mapStateToProps = ({ questions, users,authedUser }, { id }) =>{
         question : questions[id],
         user : users[user],
         users,
-        authedUser
+        authedUser,
+        err : false
     }
 }
 

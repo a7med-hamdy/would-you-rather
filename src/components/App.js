@@ -6,7 +6,7 @@ import NewQuestion from '../views/NewQuestion';
 import Leaderboard from '../views/Leaderboard';
 import Login from '../views/Login';
 import Navbar from './Navbar';
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { ProtectedRoute } from './ProtectedRoute';
 import Questionpage from '../components/Questionpage';
 

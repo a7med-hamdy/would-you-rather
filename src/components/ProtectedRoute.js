@@ -14,7 +14,12 @@ export const ProtectedRoute = ({component : Component, exact, path, logged}) =>{
             exact = {exact}
             path = {path}
             render = {(props) =>
-                logged ? (<Component {...props}/>) :  (<Redirect to = '/' />)
+                logged ? (<Component {...props}/>) :  (<Redirect to = {{
+                    pathname : '/',
+                    state : {
+                        from : props.location
+                    }
+                }} />)
             } 
         />
     )

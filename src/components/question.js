@@ -8,7 +8,6 @@ class Question extends Component{
     
     render(){
         const {question, user, answered, authedUser, users} = this.props;
-        const total_votes = question.optionOne.votes.length + question.optionTwo.votes.length;
         return(
             <div className = 'question'>
                 <div>
@@ -46,11 +45,11 @@ class Question extends Component{
                     <div style = {{fontWeight : 'bold'}}>
                         
                         <label> &#10003;
-                        {`${question.optionOne.text} : ${(question.optionOne.votes.length/total_votes*100).toFixed(2)}%  of the users answered this`}
+                        {`${question.optionOne.text} : ${question.optionOne.votes.length} users answered this`}
                         </label>
                     </div>
                     <div>
-                        {`${question.optionTwo.text} : ${(question.optionTwo.votes.length/total_votes*100).toFixed(2)}%  of the users answered this`}
+                        {`${question.optionTwo.text} : ${question.optionTwo.votes.length} users answered this`}
                     </div>
                     </div>
                     :
@@ -58,12 +57,12 @@ class Question extends Component{
                     <div>
                         
                         
-                        {`${question.optionOne.text} : ${(question.optionOne.votes.length/total_votes*100).toFixed(2)}%  of the users answered this`}
+                        {`${question.optionOne.text} : ${question.optionOne.votes.length} users answered this`}
                         
                     </div>
                     <div style = {{fontWeight : 'bold'}}>
                         <label> &#10003;
-                        {`${question.optionTwo.text} : ${(question.optionTwo.votes.length/total_votes*100).toFixed(2)}%  of the users answered this`}
+                        {`${question.optionTwo.text} : ${question.optionTwo.votes.length} users answered this`}
                         </label>
                     </div>
                     </div>

@@ -4,11 +4,13 @@ import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import Button from '@mui/material/Button';
 import { setAuthedUser } from '../redux/actions/authedUser';
+import { Redirect } from 'react-router-dom';
 
 class Login extends Component{
 
     state = {
         name : '', 
+        redirect : false,
     }
 
     handleSelect =(text) =>{
@@ -30,12 +32,16 @@ class Login extends Component{
         
         this.props.dispatch(setAuthedUser(n))
         this.setState(() => ({
-            name : ''
+            name : '',
+            redirect : true
         }))
-        this.props.history.push("/Home")
     }
     render(){
         const {users} = this.props;
+        const { from } = this.props.location.state || {from : { pathname : '/Home'}};
+        if(this.state.redirect === true){
+            return <Redirect to = {from} />
+        }
         const Array = Object.keys(users);
         const usersArray = Array.map((user) => users[user].name)
         return(
